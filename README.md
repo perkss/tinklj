@@ -3,3 +3,7 @@ A clojure api for [Google Tink](https://github.com/google/tink) cryptographic li
 
 # Contributors
 
+Matt @lamp
+
+Chris @minimal
+
