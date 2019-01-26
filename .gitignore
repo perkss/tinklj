@@ -1,7 +1,6 @@
 pom.xml
 pom.xml.asc
-*.jar
-*.class
+*jar
 /lib/
 /classes/
 /target/
@@ -11,4 +10,5 @@ pom.xml.asc
 .lein-plugins/
 .lein-failures
 .nrepl-port
-.cpcache/
+.DS_Store
+.idea/
