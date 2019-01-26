@@ -1,4 +1,4 @@
-(ns tinklj.acceptance.symmetric-key-encryption
+(ns tinklj.acceptance.symmetric-key-encryption-test
   (:require [clojure.test :refer [deftest is testing]]
             [tinklj.config.tink-config :refer [register]]
             [tinklj.keys.keyset-handle :as keyset-handles]
