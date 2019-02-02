@@ -18,6 +18,9 @@ We then get the primitive of the keyset-handle and can use this to encrypt and d
 <code>(encrypt aead (.getBytes data-to-encrypt) aad)</code>
 <code>(decrypt aead encrypted aad)</code>
 
+# Contributions
+
+Please feel free to pick up and issue or create issues and contribute. 
 
 # Contributors
 
