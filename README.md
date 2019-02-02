@@ -3,7 +3,7 @@ A clojure api for [Google Tink](https://github.com/google/tink) cryptographic li
 
 # Symmetric Encryption
 
-The best way to find the user cases for the encryption techniques is to check the Acceptance Tests. 
+The best way to find the user cases for the encryption techniques is to check the [Acceptance Tests](https://github.com/perkss/tinklj/blob/master/test/tinklj/acceptance/symmetric_key_encryption_test.clj). 
 
 First we need to call register to register the encryption techniques. 
 
