@@ -8,7 +8,7 @@
            (com.google.crypto.tink.hybrid HybridKeyTemplates)
            (com.google.crypto.tink Aead)))
 
-(def key-templates {:aes128-gcm AeadKeyTemplates/AES128_GCa
+(def key-templates {:aes128-gcm AeadKeyTemplates/AES128_GCM
                     :aes256-gcm AeadKeyTemplates/AES256_GCM
                     :aes128-eax AeadKeyTemplates/AES128_EAX
                     :aes256-eax AeadKeyTemplates/AES256_EAX
@@ -49,7 +49,7 @@
   Example:
     (generate-new :hybrid :gcm)"
   [type format]
-  (KeysetHandle/generateNew))
+  (KeysetHandle/generateNew (get-in [type format])))
 
 (defn get-primitive
   ""
