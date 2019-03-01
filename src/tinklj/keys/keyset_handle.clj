@@ -3,7 +3,7 @@
            (com.google.crypto.tink.aead AeadKeyTemplates AeadFactory)
            (com.google.crypto.tink Aead)))
 
-(def AES128-GCM (AeadKeyTemplates/AES128_GCM))
+(def AES128-GCM AeadKeyTemplates/AES128_GCM)
 
 (defn generate-new
   [keyTemplate]
