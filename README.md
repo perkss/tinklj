@@ -22,8 +22,9 @@ We then get the primitive of the keyset-handle and can use this to encrypt and d
 Based on the available feature list defined [here](https://github.com/google/tink/blob/master/docs/JAVA-HOWTO.md)
 - [x] Generation of keysets
 - [x] Symmetric key encryption
-- [ ] Storing keysets
-- [ ] Loading existing keysets
+- [x] Storing keysets
+- [x] Loading existing keysets
+- [ ] Storing and loading encrypted keysets
 - [ ] Deterministic symmetric key encryption
 - [ ] Streaming symmetric key encryption
 - [ ] MAC codes
