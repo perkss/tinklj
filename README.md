@@ -3,13 +3,13 @@ A clojure api for [Google Tink](https://github.com/google/tink) cryptographic li
 
 # Symmetric Encryption
 
-The best way to find the user cases for the encryption techniques is to check the [Acceptance Tests](https://github.com/perkss/tinklj/blob/master/test/tinklj/acceptance/symmetric_key_encryption_test.clj). 
+The best way to find the use cases for the encryption techniques is to check the [Acceptance Tests](https://github.com/perkss/tinklj/blob/master/test/tinklj/acceptance/symmetric_key_encryption_test.clj).
 
-First we need to call register to register the encryption techniques. 
+First we need to call register to register the encryption techniques.
 
 <code>(register)</code>
-    
-Then we are required to generate a keyset-handle and specify the type.    
+
+Then we are required to generate a keyset-handle and specify the type.
 <code>(keyset-handles/generate-new keyset-handles/AES128-GCM)</code>
 
 We then get the primitive of the keyset-handle and can use this to encrypt and decypt.
@@ -18,9 +18,23 @@ We then get the primitive of the keyset-handle and can use this to encrypt and d
 <code>(encrypt aead (.getBytes data-to-encrypt) aad)</code>
 <code>(decrypt aead encrypted aad)</code>
 
+# Feature List
+Based on the available feature list defined [here](https://github.com/google/tink/blob/master/docs/JAVA-HOWTO.md)
+- [x] Generation of keysets
+- [x] Symmetric key encryption
+- [ ] Storing keysets
+- [ ] Loading existing keysets
+- [ ] Deterministic symmetric key encryption
+- [ ] Streaming symmetric key encryption
+- [ ] MAC codes
+- [ ] Digital signatures
+- [ ] Hybrid encryption
+- [ ] Envelope encryption
+- [ ] Key rotation
+
 # Contributions
 
-Please feel free to pick up and issue or create issues and contribute. 
+Please feel free to pick up and issue or create issues and contribute.
 
 # Contributors
 
