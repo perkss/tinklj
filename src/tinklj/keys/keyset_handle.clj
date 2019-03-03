@@ -34,24 +34,12 @@
                     :ecies-p256-hkdf-hmac-sha256-aes128-gcm HybridKeyTemplates/ECIES_P256_HKDF_HMAC_SHA256_AES128_GCM
                     :ecies-p256-hkdf-hmac-sha256-aes128-ctr-hmac-sha256 HybridKeyTemplates/ECIES_P256_HKDF_HMAC_SHA256_AES128_CTR_HMAC_SHA256})
 
-(def templates {:aes {}
-                :aes-deterministic {}
-                :streaming-aes {}
-                :mac {}
-                :signature {}
-                :hybrid {}})
-
 (defn generate-new
   "Generates a new keyset based on the templates provided
-  Type is a type of key template that is one of :aes, :aes-deterministic, :mac,
+  template is a type of key template that is one of :aes, :aes-deterministic, :mac,
     :streaming-aes :signature or :hybrid
-  Format is the subtype of encryption, see the keys of templates[type] for more
   Example:
-    (generate-new :hybrid :gcm)"
-  [type format]
-  (KeysetHandle/generateNew (get-in [type format])))
-
-(defn get-primitive
-  ""
-  [keyset-handle]
-  (AeadFactory/getPrimitive keyset-handle))
+    (generate-new :aes128-gcm)
+  Returns a com.google.crypto.tink.*.KeyTemplate"
+  [template-name]
+  (KeysetHandle/generateNew (get key-templates template-name)))
