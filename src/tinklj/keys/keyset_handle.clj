@@ -1,12 +1,11 @@
 (ns tinklj.keys.keyset-handle
   (:import (com.google.crypto.tink KeysetHandle)
-           (com.google.crypto.tink.aead AeadKeyTemplates AeadFactory)
+           (com.google.crypto.tink.aead AeadKeyTemplates)
            (com.google.crypto.tink.streamingaead StreamingAeadKeyTemplates)
            (com.google.crypto.tink.daead DeterministicAeadKeyTemplates)
            (com.google.crypto.tink.mac MacKeyTemplates)
            (com.google.crypto.tink.signature SignatureKeyTemplates)
-           (com.google.crypto.tink.hybrid HybridKeyTemplates)
-           (com.google.crypto.tink Aead)))
+           (com.google.crypto.tink.hybrid HybridKeyTemplates)))
 
 (def key-templates {:aes128-gcm AeadKeyTemplates/AES128_GCM
                     :aes256-gcm AeadKeyTemplates/AES256_GCM
