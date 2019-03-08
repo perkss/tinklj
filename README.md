@@ -12,7 +12,7 @@ If you want to use all implementations of all primitives in tinklj then you
 call as follows:
 
 ```clojure
-(:require [tinklj.config.tink-config :refer [register])
+(:require [tinklj.config :refer [register])
 
 (register)
 ```
@@ -20,15 +20,21 @@ call as follows:
 If you wish to use a specific implementation such as AEAD you use:
 
 ```clojure
-(:require [tinklj.config.tink-config :refer [register-aead-config])
+(:require [tinklj.config :refer [register])
 
-(register-aead-config)
+(register :aead)
 ```
+Available options are:
+  - `:aead`
+  - `:daead`
+  - `:mac`
+  - `:signature`
+  - `:streaming`
 
 To do custom initialization then registration proceeds directly with a Registry class.
 
 ```clojure
-(:require [tinklj.config.tink-config :refer [register-aead-config])
+(:require [tinklj.config :refer [register-key-manager])
 
 (register-key-manager (MyAeadKeyManager.)
 ```

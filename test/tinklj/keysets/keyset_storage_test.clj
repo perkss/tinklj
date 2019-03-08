@@ -2,7 +2,7 @@
   (:require [clojure.test :refer [deftest is testing]]
             [tinklj.keys.keyset-handle :as keyset-handles]
             [tinklj.keysets.keyset-storage :as keyset-storage]
-            [tinklj.config.tink-config :refer [register]]
+            [tinklj.config :refer [register]]
             [clojure.java.io :as io])
   (:import (com.google.crypto.tink KeysetHandle)))
 
