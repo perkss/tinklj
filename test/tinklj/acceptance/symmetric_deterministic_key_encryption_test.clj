@@ -6,23 +6,23 @@
 (register :daead)
 
 (deftest symmetric-deterministic-key-encryption
+
   (testing "Encryption"
     (let [encryptable-data "Secret Data"
           aad (.getBytes "salt")
           encrypted (sut/encrypt :aes256-siv
                                  encryptable-data
                                  aad)]
-      (is (= encrypted "oi")))))
+      (is (= encrypted ""))))
 
-(deftest symmetric-deterministic-key-decryption
   (testing "Decryption"
-    (let [salt "salt"
-          decryptable-data (sut/encrypt :aes256-siv
-                                        "Secret"
-                                        salt)
-          decrypted-data (sut/decrypt :aes256-siv
-                                      decryptable-data
-                                      salt)]
-      (is (= "Secret"
-             decrypted-data)))))
+      (let [aad "salt"
+            decryptable-data (sut/encrypt :aes256-siv
+                                          "Secret"
+                                          aad)
+            decrypted-data (sut/decrypt :aes256-siv
+                                        decryptable-data
+                                        aad)]
+        (is (= "Secret"
+               decrypted-data)))))
 
