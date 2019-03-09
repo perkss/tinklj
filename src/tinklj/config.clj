@@ -8,15 +8,19 @@
            (com.google.crypto.tink.streamingaead StreamingAeadConfig)))
 
 (defn register
-  ([& config-type]
-   (prn config-type)
-   (case (first config-type)
-    :aead (AeadConfig/register)
-    :daead (DeterministicAeadConfig/register)
-    :mac (MacConfig/register)
-    :signature (SignatureConfig/register)
-    :streaming (StreamingAeadConfig/register)
-    (TinkConfig/register))))
+  "Initialise tink, optionally you can provide a type
+  to only initialise a type, for example :aead
+  Returns: nil
+  Example:
+    (register :mac)"
+  [& config-type]
+  (case (first config-type)
+   :aead (AeadConfig/register)
+   :daead (DeterministicAeadConfig/register)
+   :mac (MacConfig/register)
+   :signature (SignatureConfig/register)
+   :streaming (StreamingAeadConfig/register)
+   (TinkConfig/register)))
 
 (defn register-key-manager
   "Register custom implementation of key manager"
