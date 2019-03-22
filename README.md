@@ -88,6 +88,12 @@ We then get the primitive of the keyset-handle and can use this to encrypt and d
 (decrypt aead encrypted aad)
 ```
 
+## FAQ
+
+1. ### *Exception: java.security.InvalidKeyException: Illegal key size or default parameters* when getting a primitive
+  - If you are running a version of java 8 below `1.8.0_162` you will need to download the (Java Cryptography Extension)[http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html]
+  - If you are running a newer version of the JVM you will need to set `(Security/setProperty "crypto.policy" "unlimited")`
+
 
 # Feature List
 Based on the available feature list defined [here](https://github.com/google/tink/blob/master/docs/JAVA-HOWTO.md)

@@ -7,15 +7,7 @@
 
 (deftest symmetric-deterministic-key-encryption
 
-  (testing "Encryption"
-    (let [encryptable-data "Secret Data"
-          aad (.getBytes "salt")
-          encrypted (sut/encrypt :aes256-siv
-                                 encryptable-data
-                                 aad)]
-      (is (= encrypted ""))))
-
-  (testing "Decryption"
+  (testing "Deterministic Encryption and Decryption"
       (let [aad "salt"
             decryptable-data (sut/encrypt :aes256-siv
                                           "Secret"
@@ -24,5 +16,5 @@
                                         decryptable-data
                                         aad)]
         (is (= "Secret"
-               decrypted-data)))))
+               (String. decrypted-data))))))
 
