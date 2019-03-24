@@ -1,6 +1,8 @@
 (ns tinklj.acceptance.symmetric-deterministic-key-encryption-test
   (:require [clojure.test :refer [deftest testing is]]
             [tinklj.config :refer [register]]
+            [tinklj.keys.keyset-handle :as keyset]
+            [tinklj.primitives :refer [deterministic]]
             [tinklj.daead :as sut]))
 
 (register :daead)
@@ -9,10 +11,12 @@
 
   (testing "Deterministic Encryption and Decryption"
       (let [aad "salt"
-            decryptable-data (sut/encrypt :aes256-siv
+            handle (keyset/generate-new :aes256-siv)
+            primitive (deterministic handle)
+            decryptable-data (sut/encrypt primitive
                                           "Secret"
                                           aad)
-            decrypted-data (sut/decrypt :aes256-siv
+            decrypted-data (sut/decrypt primitive
                                         decryptable-data
                                         aad)]
         (is (= "Secret"
