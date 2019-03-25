@@ -92,7 +92,10 @@ We then get the primitive of the keyset-handle and can use this to encrypt and d
 
 1. ### *Exception: java.security.InvalidKeyException: Illegal key size or default parameters* when getting a primitive
   - If you are running a version of java 8 below `1.8.0_162` you will need to download the (Java Cryptography Extension)[http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html]
-  - If you are running a newer version of the JVM you will need to set `(Security/setProperty "crypto.policy" "unlimited")`
+  - If you are using a version of the JVM before `1.8.0_161` and `1.8.0_151` you will need to set `(Security/setProperty "crypto.policy" "unlimited")`
+  - Above Java 8 Update 161 the default encryption strength is unlimited by default
+
+  See (this stack overflow question for more)[https://stackoverflow.com/questions/24907530/java-security-invalidkeyexception-illegal-key-size-or-default-parameters-in-and]
 
 
 # Feature List

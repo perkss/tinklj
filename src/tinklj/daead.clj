@@ -1,8 +1,4 @@
-(ns tinklj.daead
-  (:require [tinklj.keys.keyset-handle :as keyset-handles])
-  (:import (java.security Security)))
-
-(Security/setProperty "crypto.policy" "unlimited")
+(ns tinklj.daead)
 
 (defn encrypt [handle data salt]
   (.encryptDeterministically handle

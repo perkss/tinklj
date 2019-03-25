@@ -13,11 +13,11 @@
       (let [aad "salt"
             handle (keyset/generate-new :aes256-siv)
             primitive (deterministic handle)
-            decryptable-data (sut/encrypt primitive
-                                          "Secret"
-                                          aad)
+            encrypted-data (sut/encrypt primitive
+                                        "Secret"
+                                        aad)
             decrypted-data (sut/decrypt primitive
-                                        decryptable-data
+                                        encrypted-data
                                         aad)]
         (is (= "Secret"
                (String. decrypted-data))))))
