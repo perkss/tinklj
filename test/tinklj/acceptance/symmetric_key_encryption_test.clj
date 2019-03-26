@@ -1,6 +1,6 @@
 (ns tinklj.acceptance.symmetric-key-encryption-test
   (:require [clojure.test :refer [deftest is testing]]
-            [tinklj.config.tink-config :refer [register]]
+            [tinklj.config :refer [register]]
             [tinklj.primitives :as primitives]
             [tinklj.keys.keyset-handle :as keyset-handles]
             [tinklj.encryption :refer [encrypt decrypt]]))
