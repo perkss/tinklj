@@ -108,6 +108,35 @@ How to compute or verify a MAC (Message Authentication Code)
 (mac/verify mac tag data)
 ```
 
+## Digitial Signatures
+
+Here is an example of how to sign or verify a digital signature:
+
+```clojure
+(:require [tinklj.config :refer :all]
+          [tinklj.primitives :as primitives]
+          [tinklj.keys.keyset-handle :as keyset-handles]
+          [tinklj.signature.digital-signature :refer [sign verify])
+
+;; SIGNING
+
+;; 1. Generate the private key material.
+(def private-keyset-handle (keyset-handles/generate-new :ecdsa-p256))
+
+;; 2. Sign the data.
+(def signature (sign private-keyset-handle data)
+
+;; VERIFYING
+
+;; 1. Obtain a handle for the public key material.
+(def public-key-set-handle (get-public-keyset-handle private-keyset-handle))
+
+;; 2. Use the primitive to verify.
+(verify public-key-set-handle
+        signature
+        data)
+```
+
 
 ## FAQ
 
