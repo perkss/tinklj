@@ -101,11 +101,11 @@ We then get the primitive of the keyset-handle and can use this to encrypt and d
 How to compute or verify a MAC (Message Authentication Code)
 
 ```clojure
-(:require [tinklj.mac.message_authentication_code :refer [verify-mac compute-mac])
+(:require [tinklj.mac.message-authentication-code :refer :as mac)
 
 
-(compute-mac mac data)
-(verify-mac mac tag data)
+(mac/compute mac data)
+(mac/verify mac tag data)
 ```
 
 

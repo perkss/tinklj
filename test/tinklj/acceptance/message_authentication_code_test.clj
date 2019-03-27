@@ -3,7 +3,7 @@
             [tinklj.config :refer :all]
             [tinklj.primitives :as primitives]
             [tinklj.keys.keyset-handle :as keyset-handles]
-            [tinklj.mac.message-authentication-code :refer [verify-mac compute-mac]])
+            [tinklj.mac.message-authentication-code :as sut])
   (:import (java.security GeneralSecurityException)))
 
 (register :aead)
@@ -14,9 +14,9 @@
     (let [secret-data (.getBytes "Secret data")
           keyset-handle (keyset-handles/generate-new :hmac-sha256-128bittag)
           mac (primitives/mac keyset-handle)
-          tag (compute-mac mac
+          tag (sut/compute mac
                            secret-data)
-          verify (verify-mac mac
+          verify (sut/verify mac
                              tag
                              secret-data)]
       (is (not (= GeneralSecurityException verify))))))
@@ -28,8 +28,8 @@
           invalid-data (.getBytes "Invalid data")
           keyset-handle (keyset-handles/generate-new :hmac-sha256-128bittag)
           mac (primitives/mac keyset-handle)
-          tag (compute-mac mac
+          tag (sut/compute mac
                            secret-data)]
-      (is (thrown? GeneralSecurityException (verify-mac mac
+      (is (thrown? GeneralSecurityException (sut/verify mac
                                                         tag
                                                         invalid-data))))))
