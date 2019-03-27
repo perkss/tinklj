@@ -1,13 +1,18 @@
 (ns tinklj.signature.digital-signature
-  (:import (com.google.crypto.tink PublicKeySign PublicKeyVerify)))
+  (:require [tinklj.primitives :refer [digital-signature digital-signature-verification]])
+  (:import (com.google.crypto.tink PublicKeyVerify PublicKeySign)))
 
 (defn sign
   [handle data]
-  (let [public-key-signer (.getPrimitive handle PublicKeySign)]
-    (.sign public-key-signer data)))
+  (let [^PublicKeySign public-key-signer (digital-signature handle)]
+    (.sign public-key-signer
+           (.getBytes data))))
 
 (defn verify
   [public-keyset-handle signature data]
-  (let [public-key-verifier (.getPrimitive public-keyset-handle PublicKeyVerify)]
-    (.verify public-key-verifier signature data)))
+  (let [^PublicKeyVerify public-key-verifier (digital-signature-verification
+                                               public-keyset-handle)]
+    (.verify public-key-verifier
+             signature
+             (.getBytes data))))
 
