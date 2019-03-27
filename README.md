@@ -108,7 +108,7 @@ How to compute or verify a MAC (Message Authentication Code)
 (mac/verify mac tag data)
 ```
 
-## Digitial Signatures
+## Digital Signatures
 
 Here is an example of how to sign or verify a digital signature:
 
