@@ -3,7 +3,7 @@
             [tinklj.config :refer [register]]
             [tinklj.keys.keyset-handle :as keyset]
             [tinklj.primitives :refer [deterministic]]
-            [tinklj.daead :as sut]))
+            [tinklj.encryption.daead :as sut]))
 
 (register :daead)
 

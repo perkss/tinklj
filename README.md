@@ -80,13 +80,34 @@ We then get the primitive of the keyset-handle and can use this to encrypt and d
 ```
 
 
-## Encryption and Decryption
+## Authenticated Encryption with Associated Data
 ```clojure
-(:require [tinklj.encryption :refer [encrypt decrypt])
+(:require [tinklj.encryption.aead :refer [encrypt decrypt])
 
 (encrypt aead (.getBytes data-to-encrypt) aad)
 (decrypt aead encrypted aad)
 ```
+
+## Deterministic Authenticated Encryption with Associated Data
+```clojure
+(:require [tinklj.encryption.daead :refer [encrypt decrypt])
+
+(encrypt aead (.getBytes data-to-encrypt) aad)
+(decrypt aead encrypted aad)
+```
+
+## Message Authentication Code
+
+How to compute or verify a MAC (Message Authentication Code)
+
+```clojure
+(:require [tinklj.mac.message-authentication-code :refer :as mac)
+
+
+(mac/compute mac data)
+(mac/verify mac tag data)
+```
+
 
 ## FAQ
 

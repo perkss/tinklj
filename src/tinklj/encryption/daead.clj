@@ -1,4 +1,4 @@
-(ns tinklj.daead)
+(ns tinklj.encryption.daead)
 
 (defn encrypt [handle data salt]
   (.encryptDeterministically handle
