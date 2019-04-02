@@ -42,3 +42,7 @@
   Returns a com.google.crypto.tink.*.KeyTemplate"
   [template-name]
   (KeysetHandle/generateNew (get key-templates template-name)))
+
+(defn get-public-keyset-handle
+  [handle]
+  (.getPublicKeysetHandle handle))
