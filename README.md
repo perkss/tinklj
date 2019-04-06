@@ -155,10 +155,10 @@ Based on the available feature list defined [here](https://github.com/google/tin
 - [x] Storing keysets
 - [x] Loading existing keysets
 - [ ] Storing and loading encrypted keysets
-- [ ] Deterministic symmetric key encryption
+- [x] Deterministic symmetric key encryption
 - [ ] Streaming symmetric key encryption
-- [ ] MAC codes
-- [ ] Digital signatures
+- [x] MAC codes
+- [x] Digital signatures
 - [ ] Hybrid encryption
 - [ ] Envelope encryption
 - [ ] Key rotation
