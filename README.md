@@ -1,5 +1,6 @@
-# tinklj
-A clojure api for [Google Tink](https://github.com/google/tink) cryptographic library
+<img src="docs/logo/Tinklj4-01.jpg" alt="Tinklj" width="1000"/>
+
+Tinklj a Clojure api for [Google Tink](https://github.com/google/tink) cryptographic library, offering simplistic and secure cryptography for Clojure.
 
 # Installation
 #### Leiningen/Boot
@@ -283,8 +284,18 @@ Please feel free to pick up and issue or create issues and contribute.
 
 # Contributors
 
+Thanks to all the developers involved!
+
 Matt @lamp
 
 Chris @minimal
 
 Stuart @perkss
+
+
+# Logo
+
+Thanks and credit for the great Tinklj logo!
+
+J.G Designer @newfinal100
+
