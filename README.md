@@ -1,6 +1,28 @@
 # tinklj
 A clojure api for [Google Tink](https://github.com/google/tink) cryptographic library
 
+# Installation
+#### Leiningen/Boot
+```
+[tinklj "0.1.0-SNAPSHOT"]
+```
+#### Clojure CLI/deps.edn
+```
+tinklj {:mvn/version "0.1.0-SNAPSHOT"}
+```
+#### Gradle
+```
+compile 'tinklj:tinklj:0.1.0-SNAPSHOT'
+```
+#### Maven
+``` xml
+<dependency>
+  <groupId>tinklj</groupId>
+  <artifactId>tinklj</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+</dependency>
+```
+
 # Symmetric Encryption
 
 The best way to find the use cases for the encryption techniques is to check the [Acceptance Tests](https://github.com/perkss/tinklj/blob/master/test/tinklj/acceptance/symmetric_key_encryption_test.clj).
