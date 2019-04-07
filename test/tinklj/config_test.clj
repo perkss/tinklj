@@ -8,8 +8,8 @@
       (is (nil? (sut/register thing)))))
 
   (testing "Config without a type"
-      (is (nil? (sut/register))))
+    (is (nil? (sut/register))))
 
   (testing "Defaults to Standard config"
-      (is (nil? (sut/register :foobar)))))
+    (is (nil? (sut/register :foobar)))))
 
