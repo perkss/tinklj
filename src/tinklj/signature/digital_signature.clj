@@ -11,7 +11,7 @@
 (defn verify
   [public-keyset-handle signature data]
   (let [^PublicKeyVerify public-key-verifier (digital-signature-verification
-                                               public-keyset-handle)]
+                                              public-keyset-handle)]
     (.verify public-key-verifier
              signature
              (.getBytes data))))

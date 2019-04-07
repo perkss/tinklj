@@ -15,12 +15,12 @@
     (register :mac)"
   [& config-type]
   (case (first config-type)
-   :aead (AeadConfig/register)
-   :daead (DeterministicAeadConfig/register)
-   :mac (MacConfig/register)
-   :signature (SignatureConfig/register)
-   :streaming (StreamingAeadConfig/register)
-   (TinkConfig/register)))
+    :aead (AeadConfig/register)
+    :daead (DeterministicAeadConfig/register)
+    :mac (MacConfig/register)
+    :signature (SignatureConfig/register)
+    :streaming (StreamingAeadConfig/register)
+    (TinkConfig/register)))
 
 (defn register-key-manager
   "Register custom implementation of key manager"

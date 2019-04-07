@@ -14,8 +14,8 @@
     (let [data "Secret Data to be Signed"
           private-keyset-handle (keyset-handles/generate-new :ecdsa-p256)
           signature (sut/sign
-                      private-keyset-handle
-                      data)
+                     private-keyset-handle
+                     data)
           public-key-set-handle (get-public-keyset-handle private-keyset-handle)
           verify (sut/verify public-key-set-handle
                              signature
