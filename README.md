@@ -1,4 +1,4 @@
-<img src="docs/logo/Tinklj4-01.jpg" alt="Tinklj" width="1000"/>
+<img src="docs/logo/Tinklj-1st-font-blue-with padding-01.jpg" alt="Tinklj" width="1000"/>
 
 Tinklj a Clojure api for [Google Tink](https://github.com/google/tink) cryptographic library, offering simplistic and secure cryptography for Clojure.
 
