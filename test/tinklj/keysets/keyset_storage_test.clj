@@ -17,7 +17,6 @@
       (is (= KeysetHandle (type keyset)))
       (io/delete-file filename))))
 
-
 (deftest rotate-should-add-new-key-and-set-primary-key-id
   (testing "Rotate key should add new and set a primary key id")
   (let [keyset-handle (keyset-handles/generate-new :aes128-gcm)
