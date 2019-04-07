@@ -1,5 +1,5 @@
 (ns tinklj.keysets.keyset-storage
-  (:import (com.google.crypto.tink CleartextKeysetHandle JsonKeysetWriter JsonKeysetReader KeysetHandle KmsClient))
+  (:import (com.google.crypto.tink CleartextKeysetHandle JsonKeysetWriter JsonKeysetReader KeysetHandle KmsClient KeysetManager))
   (:require [clojure.java.io :as io]
             [tinklj.keysets.integration.kms-client :as client]))
 
@@ -25,3 +25,9 @@
   [^KmsClient kms-client filename master-key-uri]
   (KeysetHandle/read (JsonKeysetReader/withFile (io/file filename))
                      (client/get-aead kms-client master-key-uri)))
+
+(defn rotate-keyset-handle
+  [keyset-handle key-template]
+  (-> (KeysetManager/withKeysetHandle keyset-handle)
+      (.rotate key-template)
+      (.getKeysetHandle)))

@@ -216,8 +216,7 @@ How to compute or verify a MAC (Message Authentication Code)
 Here is an example of how to sign or verify a digital signature:
 
 ```clojure
-(:require [tinklj.config :refer :all]
-          [tinklj.primitives :as primitives]
+(:require [tinklj.primitives :as primitives]
           [tinklj.keys.keyset-handle :as keyset-handles]
           [tinklj.signature.digital-signature :refer [sign verify])
 
@@ -240,6 +239,18 @@ Here is an example of how to sign or verify a digital signature:
         data)
 ```
 
+## Key Rotation
+To complete key rotation you need a keyset-handle that contains the keyset that should be rotated, and a specification of the new key via the KeyTemplate map for example :aes128-gcm.
+
+```clojure
+(:require [tinklj.keys.keyset-handle :as keyset-handles]
+          [tinklj.keysets.keyset-storage :as keyset-storage])
+
+(def keyset-handle (keyset-handles/generate-new :aes128-gcm)) ;; existing keyset
+(def keyset-template (:hmac-sha256-128bittag keyset-handles/key-templates)) ;; template for the new key
+
+(keyset-storage/rotate-keyset-handle keyset-handle keyset-template)
+```
 
 ## FAQ
 
@@ -257,14 +268,14 @@ Based on the available feature list defined [here](https://github.com/google/tin
 - [x] Symmetric key encryption
 - [x] Storing keysets
 - [x] Loading existing keysets
-- [ ] Storing and loading encrypted keysets
+- [x] Storing and loading encrypted keysets
 - [x] Deterministic symmetric key encryption
 - [ ] Streaming symmetric key encryption
 - [x] MAC codes
 - [x] Digital signatures
 - [ ] Hybrid encryption
 - [ ] Envelope encryption
-- [ ] Key rotation
+- [x] Key rotation
 
 # Contributions
 
