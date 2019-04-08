@@ -299,3 +299,5 @@ Thanks and credit for the great Tinklj logo!
 
 J.G Designer @newfinal100
 
+# Disclaimer
+This is not an official Google product or library.
