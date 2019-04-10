@@ -164,7 +164,7 @@ We then get the primitive of the keyset-handle and can use this to encrypt and d
 (def keyset-handle (keyset-handle/generate-new :aes128-gcm))
 
 ;; 2. Get the primitive.
-(def aead (deterministic handle))
+(def aead (primitives/aead keyset-handle))
 
 ;; 3. Use the primitive to encrypt a plaintext,
 (def ciphertext (encrypt aead (.getBytes data-to-encrypt) aad))
@@ -177,14 +177,15 @@ We then get the primitive of the keyset-handle and can use this to encrypt and d
 #### Deterministic Authenticated Encryption with Associated Data
 ```clojure
 (:require [tinklj.encryption.daead :refer [encrypt decrypt]
-          [tinklj.keys.keyset-handle :as keyset-handle])
+          [tinklj.keys.keyset-handle :as keyset-handle]
+          [tinklj.primitives :as primitives])
 
 
 ;; 1. Generate the key material.
 (def keyset-handle (keyset-handle/generate-new :aes256-siv))
 
 ;; 2. Get the primitive.
-(def daead (deterministic keyset-handle))
+(def daead (primitives/deterministic keyset-handle))
 
 ;; 3. Use the primitive to deterministically encrypt a plaintext,
 (def ciphertext (encrypt daead (.getBytes data-to-encrypt) aad))
