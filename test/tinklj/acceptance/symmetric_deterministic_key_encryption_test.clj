@@ -10,15 +10,16 @@
 (deftest symmetric-deterministic-key-encryption
 
   (testing "Deterministic Encryption and Decryption"
-    (let [aad "salt"
+    (let [aad (.getBytes "salt")
+          plain-text "Secret"
           handle (keyset/generate-new :aes256-siv)
           primitive (deterministic handle)
           encrypted-data (sut/encrypt primitive
-                                      "Secret"
+                                      (.getBytes plain-text)
                                       aad)
           decrypted-data (sut/decrypt primitive
                                       encrypted-data
                                       aad)]
-      (is (= "Secret"
+      (is (= plain-text
              (String. decrypted-data))))))
 

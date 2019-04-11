@@ -10,14 +10,14 @@
 (deftest symmetric-key-encryption
   (testing "Symmetric key encryption"
 
-    (let [secret-data "Secret data"
+    (let [plain-text "Secret data"
           keyset-handle (keyset-handles/generate-new :aes128-gcm)
           primitive (primitives/aead keyset-handle)
           aad (.getBytes "Salt")
           encrypted (sut/encrypt primitive
-                                 (.getBytes secret-data)
+                                 (.getBytes plain-text)
                                  aad)
           decrypted (sut/decrypt primitive
                                  encrypted
                                  aad)]
-      (is (= secret-data (String. decrypted))))))
+      (is (= plain-text (String. decrypted))))))
