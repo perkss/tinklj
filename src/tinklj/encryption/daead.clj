@@ -2,10 +2,10 @@
 
 (defn encrypt [handle data salt]
   (.encryptDeterministically handle
-                             (.getBytes data)
-                             (.getBytes salt)))
+                             data
+                             salt))
 
 (defn decrypt [handle encrypted-data salt]
   (.decryptDeterministically handle
                              encrypted-data
-                             (.getBytes salt)))
+                             salt))

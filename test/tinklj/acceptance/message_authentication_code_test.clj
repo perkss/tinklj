@@ -11,14 +11,14 @@
 (deftest message-authentication-code
 
   (testing "How to compute or verify a Mac (Message Authentication Code)"
-    (let [secret-data (.getBytes "Secret data")
+    (let [plain-text (.getBytes "Secret data")
           keyset-handle (keyset-handles/generate-new :hmac-sha256-128bittag)
           mac (primitives/mac keyset-handle)
           tag (sut/compute mac
-                           secret-data)
+                           plain-text)
           verify (sut/verify mac
                              tag
-                             secret-data)]
+                             plain-text)]
       (is (not (= GeneralSecurityException verify))))))
 
 (deftest invalid-message-authentication-code

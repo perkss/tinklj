@@ -244,6 +244,45 @@ Here is an example of how to sign or verify a digital signature:
         data)
 ```
 
+## Hybrid Encryption
+
+To encrypt or decrypt using a [combination of public key encryption and symmetric key encryption](https://github.com/google/tink/blob/master/docs/PRIMITIVES.md#hybrid-encryption) one can use the following:
+
+```clojure
+(:require  [tinklj.config :refer [register]]
+           [tinklj.keys.keyset-handle :as keyset]
+           [tinklj.primitives :as primitives]
+           [tinklj.encryption.aead :refer [encrypt decrypt]])
+
+(register)
+
+;; 1. Generate the private key material.
+(def private-keyset-handle (keyset/generate-new :ecies-p256-hkdf-hmac-sha256-aes128-gcm))
+
+;;  Obtain the public key material.
+(def public-keyset-handle (keyset/get-public-keyset-handle private-keyset-handle))
+
+;; ENCRYPTING
+
+;; 2. Get the primitive.
+(def hybrid-encrypt (primitives/hybrid-encryption public-keyset-handle))
+
+;; 3. Use the primitive.
+(def encrypted-data (encrypt hybrid-encrypt
+                                 (.getBytes plain-text)
+                                 aad))
+;; DECRYPTING
+
+;;  2. Get the primitive.
+(def hybrid-decrypt (primitives/hybrid-decryption private-keyset-handle))
+
+;; 3. Use the primitive.
+(def decrypted-data (decrypt hybrid-decrypt
+                                 encrypted-data
+                                 aad))
+```
+
+
 ## Key Rotation
 To complete key rotation you need a keyset-handle that contains the keyset that should be rotated, and a specification of the new key via the KeyTemplate map for example :aes128-gcm.
 
@@ -278,7 +317,7 @@ Based on the available feature list defined [here](https://github.com/google/tin
 - [ ] Streaming symmetric key encryption
 - [x] MAC codes
 - [x] Digital signatures
-- [ ] Hybrid encryption
+- [x] Hybrid encryption
 - [ ] Envelope encryption
 - [x] Key rotation
 
