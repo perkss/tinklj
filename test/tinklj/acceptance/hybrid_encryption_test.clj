@@ -17,11 +17,11 @@
           hybrid-encrypt (primitives/hybrid-encryption public-keyset-handle)
           hybrid-decrypt (primitives/hybrid-decryption private-keyset-handle)
           encrypted-data (encrypt hybrid-encrypt
-                                      (.getBytes plain-text)
-                                      aad)
+                                  (.getBytes plain-text)
+                                  aad)
           decrypted-data (decrypt hybrid-decrypt
-                                      encrypted-data
-                                      aad)]
+                                  encrypted-data
+                                  aad)]
       (is (= plain-text
              (String. decrypted-data))))))
 
