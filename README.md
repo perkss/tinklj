@@ -309,6 +309,34 @@ To encrypt or decrypt using a [combination of public key encryption and symmetri
                                  aad))
 ```
 
+## Envelope Encryption
+```clojure
+(:require  [tinklj.keys.keyset-handle :as keyset]
+           [tinklj.primitives :as primitives]
+           [tinklj.encryption.aead :refer [encrypt]]
+           [tinklj.keysets.integration.kms-client :as client]
+           [tinklj.keysets.integration.gcp-kms-client :refer [gcp-kms-client])
+
+# 1. Generate the key material.
+    (def kmsKeyUri
+        "gcp-kms://projects/tink-examples/locations/global/keyRings/foo/cryptoKeys/bar")
+    
+    (def keysetHandle (keyset/generate-new
+        (keyset/create-kms-envelope-aead-key-template kmsKeyUri :aes128-gcm)))
+
+# 2. Register the KMS client.
+    (def gcp-client (gcp-kms-client))
+    (client/with-credentials gcp-client "credentials.json")
+    (client/kms-client-add gcp-client)
+
+# 3. Get the primitive.
+    (def aead (primitives/aead keyset-handle))
+
+# 4. Use the primitive.
+    (def ciphertext (encrypt aead (.getBytes data-to-encrypt) aad))
+
+```
+
 
 ## Key Rotation
 To complete key rotation you need a keyset-handle that contains the keyset that should be rotated, and a specification of the new key via the KeyTemplate map for example :aes128-gcm.
@@ -345,7 +373,7 @@ Based on the available feature list defined [here](https://github.com/google/tin
 - [x] MAC codes
 - [x] Digital signatures
 - [x] Hybrid encryption
-- [ ] Envelope encryption
+- [x] Envelope encryption
 - [x] Key rotation
 
 # Contributions

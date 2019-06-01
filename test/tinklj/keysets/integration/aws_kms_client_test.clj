@@ -1,6 +1,6 @@
 (ns tinklj.keysets.integration.aws-kms-client-test
-  (:require [clojure.test :refer [deftest is testing]])
-  (:require [tinklj.keysets.integration.kms-client :as client]
+  (:require [clojure.test :refer [deftest is testing]]
+            [tinklj.keysets.integration.kms-client :as client]
             [tinklj.keysets.integration.aws-kms-client :refer [aws-kms-client]])
   (:import (com.google.crypto.tink.integration.awskms AwsKmsClient)))
 

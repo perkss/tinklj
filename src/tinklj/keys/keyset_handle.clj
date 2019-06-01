@@ -46,3 +46,24 @@
 (defn get-public-keyset-handle
   [handle]
   (.getPublicKeysetHandle handle))
+
+(defn create-aes-gcm-key-template
+  [key-size]
+  (AeadKeyTemplates/createAesGcmKeyTemplate key-size))
+
+(defn create-aes-eax-key-template
+  [key-size iv-size]
+  (AeadKeyTemplates/createAesEaxKeyTemplate key-size iv-size))
+
+(defn create-aes-ctr-hmac-aead-key-template
+  [aes-key-size iv-size hmac-key-size tag-size hash-type]
+  (AeadKeyTemplates/createAesCtrHmacAeadKeyTemplate
+   aes-key-size iv-size hmac-key-size tag-size hash-type))
+
+(defn create-kms-aead-key-template
+  [kms-key-uri]
+  (AeadKeyTemplates/createKmsAeadKeyTemplate kms-key-uri))
+
+(defn create-kms-envelope-aead-key-template
+  [kms-key-uri key-template]
+  (AeadKeyTemplates/createKmsEnvelopeAeadKeyTemplate kms-key-uri key-template))
