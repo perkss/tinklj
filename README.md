@@ -317,22 +317,22 @@ To encrypt or decrypt using a [combination of public key encryption and symmetri
            [tinklj.keysets.integration.kms-client :as client]
            [tinklj.keysets.integration.gcp-kms-client :refer [gcp-kms-client])
 
-# 1. Generate the key material.
+;; 1. Generate the key material.
     (def kmsKeyUri
         "gcp-kms://projects/tink-examples/locations/global/keyRings/foo/cryptoKeys/bar")
     
     (def keysetHandle (keyset/generate-new
         (keyset/create-kms-envelope-aead-key-template kmsKeyUri :aes128-gcm)))
 
-# 2. Register the KMS client.
+;; 2. Register the KMS client.
     (def gcp-client (gcp-kms-client))
     (client/with-credentials gcp-client "credentials.json")
     (client/kms-client-add gcp-client)
-
-# 3. Get the primitive.
+    
+;; 3. Get the primitive.
     (def aead (primitives/aead keyset-handle))
 
-# 4. Use the primitive.
+;; 4. Use the primitive.
     (def ciphertext (encrypt aead (.getBytes data-to-encrypt) aad))
 
 ```
