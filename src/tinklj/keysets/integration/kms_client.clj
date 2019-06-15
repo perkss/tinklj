@@ -1,5 +1,5 @@
 (ns tinklj.keysets.integration.kms-client
-  (:import (com.google.crypto.tink KmsClient)))
+  (:import (com.google.crypto.tink KmsClient KmsClients)))
 
 (defn does-support
   [^KmsClient client uri]
@@ -16,3 +16,7 @@
 (defn get-aead
   [^KmsClient client key-uri]
   (.getAead client key-uri))
+
+(defn kms-client-add
+  [kms-client]
+  (KmsClients/add kms-client))

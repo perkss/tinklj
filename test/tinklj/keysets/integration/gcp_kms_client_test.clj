@@ -1,6 +1,6 @@
 (ns tinklj.keysets.integration.gcp-kms-client-test
-  (:require [clojure.test :refer [deftest testing is]])
-  (:require [tinklj.keysets.integration.gcp-kms-client :refer [gcp-kms-client]]
+  (:require [clojure.test :refer [deftest testing is]]
+            [tinklj.keysets.integration.gcp-kms-client :refer [gcp-kms-client]]
             [tinklj.keysets.integration.kms-client :as client])
   (:import (com.google.crypto.tink.integration.gcpkms GcpKmsClient)))
 

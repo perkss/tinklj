@@ -46,3 +46,69 @@
 (defn get-public-keyset-handle
   [handle]
   (.getPublicKeysetHandle handle))
+
+(defn create-aes-gcm-key-template
+  [key-size]
+  (AeadKeyTemplates/createAesGcmKeyTemplate key-size))
+
+(defn create-aes-eax-key-template
+  [key-size iv-size]
+  (AeadKeyTemplates/createAesEaxKeyTemplate key-size iv-size))
+
+(defn create-aes-ctr-hmac-aead-key-template
+  [aes-key-size iv-size hmac-key-size tag-size hash-type]
+  (AeadKeyTemplates/createAesCtrHmacAeadKeyTemplate
+   aes-key-size iv-size hmac-key-size tag-size hash-type))
+
+(defn create-kms-aead-key-template
+  [kms-key-uri]
+  (AeadKeyTemplates/createKmsAeadKeyTemplate kms-key-uri))
+
+(defn create-kms-envelope-aead-key-template
+  [kms-key-uri key-template]
+  (AeadKeyTemplates/createKmsEnvelopeAeadKeyTemplate kms-key-uri key-template))
+
+(defn create-hmac-key-template
+  [key-size tag-size hash-type]
+  (MacKeyTemplates/createHmacKeyTemplate key-size tag-size hash-type))
+
+(defn create-aes-ctr-hmac-streaming-key-template
+  [main-key-size
+   hkdf-hash-type
+   derived-key-size
+   mac-hash-type
+   tag-size
+   ciphertext-segment-size]
+  (StreamingAeadKeyTemplates/createAesCtrHmacStreamingKeyTemplate
+   main-key-size hkdf-hash-type derived-key-size mac-hash-type tag-size ciphertext-segment-size))
+
+(defn create-aes-gcm-hkdf-streaming-key-template
+  [main-key-size hkdf-hash-type derived-key-size ciphertext-segment-size]
+  (StreamingAeadKeyTemplates/createAesGcmHkdfStreamingKeyTemplate
+   main-key-size hkdf-hash-type derived-key-size ciphertext-segment-size))
+
+(defn create-aes-siv-key-template
+  [key-size]
+  (DeterministicAeadKeyTemplates/createAesSivKeyTemplate key-size))
+
+(defn create-aes-gcm-hkdf-streaming-key-template
+  [hash-type curve encoding]
+  (SignatureKeyTemplates/createEcdsaKeyTemplate hash-type curve encoding))
+
+(defn createEciesAeadHkdfKeyTemplate
+  [curve
+   hash-type
+   ec-point-format
+   dem-key-template
+   salt]
+  (HybridKeyTemplates/createEciesAeadHkdfKeyTemplate
+   curve hash-type ec-point-format dem-key-template salt))
+
+(defn createEciesAeadHkdfParams
+  [curve
+   hash-type
+   ec-point-format
+   dem-key-template
+   salt]
+  (HybridKeyTemplates/createEciesAeadHkdfParams
+   curve hash-type ec-point-format dem-key-template salt))

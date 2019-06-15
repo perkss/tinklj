@@ -194,6 +194,33 @@ We then get the primitive of the keyset-handle and can use this to encrypt and d
 (def decrypted (decrypt daead ciphertext aad))
 ```
 
+## Symmetric Key Encryption of Streaming Data
+```clojure
+;; 1. Generate the key material.
+(def keyset-handle (keyset-handles/generate-new :aes128-ctr-hmac-sha256-4kb))
+
+;; 2. Get the primitive.
+(def streaming-primitive (primitives/streaming keyset-handle))
+
+;; 3. Get the Encrypting Channel
+(def encrypting-channel (streaming/encrypting-channel
+                                      streaming-primitive
+                                      ciphertext-destination
+                                      associated-data))
+                                      
+;; 4. Write Encrypting Data
+(streaming/encrypting-channel-write encrypting-channel byte-buffer)   
+
+;; 5. Get the Decrypting Channel
+(def decrypting-channel (streaming/decrypting-channel
+                                           streaming-primitive
+                                           (.getChannel file-input-stream)
+                                           associated-data))
+                                           
+;; 6. Read the Decrypted Data
+(streaming/decrypting-channel-read decrypting-channel buf)
+```
+
 ## Message Authentication Code
 
 How to compute or verify a MAC (Message Authentication Code)
@@ -282,6 +309,34 @@ To encrypt or decrypt using a [combination of public key encryption and symmetri
                                  aad))
 ```
 
+## Envelope Encryption
+```clojure
+(:require  [tinklj.keys.keyset-handle :as keyset]
+           [tinklj.primitives :as primitives]
+           [tinklj.encryption.aead :refer [encrypt]]
+           [tinklj.keysets.integration.kms-client :as client]
+           [tinklj.keysets.integration.gcp-kms-client :refer [gcp-kms-client])
+
+;; 1. Generate the key material.
+    (def kmsKeyUri
+        "gcp-kms://projects/tink-examples/locations/global/keyRings/foo/cryptoKeys/bar")
+    
+    (def keysetHandle (keyset/generate-new
+        (keyset/create-kms-envelope-aead-key-template kmsKeyUri :aes128-gcm)))
+
+;; 2. Register the KMS client.
+    (def gcp-client (gcp-kms-client))
+    (client/with-credentials gcp-client "credentials.json")
+    (client/kms-client-add gcp-client)
+    
+;; 3. Get the primitive.
+    (def aead (primitives/aead keyset-handle))
+
+;; 4. Use the primitive.
+    (def ciphertext (encrypt aead (.getBytes data-to-encrypt) aad))
+
+```
+
 
 ## Key Rotation
 To complete key rotation you need a keyset-handle that contains the keyset that should be rotated, and a specification of the new key via the KeyTemplate map for example :aes128-gcm.
@@ -314,11 +369,11 @@ Based on the available feature list defined [here](https://github.com/google/tin
 - [x] Loading existing keysets
 - [x] Storing and loading encrypted keysets
 - [x] Deterministic symmetric key encryption
-- [ ] Streaming symmetric key encryption
+- [x] Streaming symmetric key encryption
 - [x] MAC codes
 - [x] Digital signatures
 - [x] Hybrid encryption
-- [ ] Envelope encryption
+- [x] Envelope encryption
 - [x] Key rotation
 
 # Contributions
