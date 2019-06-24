@@ -8,22 +8,22 @@ Tinklj a Clojure api for [Google Tink](https://github.com/google/tink) cryptogra
 
 #### Leiningen/Boot
 ```
-[tinklj "0.1.0-SNAPSHOT"]
+[tinklj "0.1.1-SNAPSHOT"]
 ```
 #### Clojure CLI/deps.edn
 ```
-tinklj {:mvn/version "0.1.0-SNAPSHOT"}
+tinklj {:mvn/version "0.1.1-SNAPSHOT"}
 ```
 #### Gradle
 ```
-compile 'tinklj:tinklj:0.1.0-SNAPSHOT'
+compile 'tinklj:tinklj:0.1.1-SNAPSHOT'
 ```
 #### Maven
 ``` xml
 <dependency>
   <groupId>tinklj</groupId>
   <artifactId>tinklj</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.1.1-SNAPSHOT</version>
 </dependency>
 ```
 
