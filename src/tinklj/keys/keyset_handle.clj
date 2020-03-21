@@ -5,7 +5,8 @@
            (com.google.crypto.tink.daead DeterministicAeadKeyTemplates)
            (com.google.crypto.tink.mac MacKeyTemplates)
            (com.google.crypto.tink.signature SignatureKeyTemplates)
-           (com.google.crypto.tink.hybrid HybridKeyTemplates)))
+           (com.google.crypto.tink.hybrid HybridKeyTemplates)
+           (com.google.crypto.tink.proto OutputPrefixType)))
 
 (def key-templates {:aes128-gcm AeadKeyTemplates/AES128_GCM
                     :aes256-gcm AeadKeyTemplates/AES256_GCM
@@ -91,9 +92,9 @@
   [key-size]
   (DeterministicAeadKeyTemplates/createAesSivKeyTemplate key-size))
 
-(defn create-aes-gcm-hkdf-streaming-key-template
-  [hash-type curve encoding]
-  (SignatureKeyTemplates/createEcdsaKeyTemplate hash-type curve encoding))
+(defn create-ecdsa-key-template
+  [hash-type curve encoding ^OutputPrefixType output-type]
+  (SignatureKeyTemplates/createEcdsaKeyTemplate hash-type curve encoding output-type))
 
 (defn createEciesAeadHkdfKeyTemplate
   [curve
