@@ -91,9 +91,9 @@
   [key-size]
   (DeterministicAeadKeyTemplates/createAesSivKeyTemplate key-size))
 
-(defn create-aes-gcm-hkdf-streaming-key-template
-  [hash-type curve encoding]
-  (SignatureKeyTemplates/createEcdsaKeyTemplate hash-type curve encoding))
+(defn create-ecdsa-key-template
+  [hash-type curve encoding output-type]
+  (SignatureKeyTemplates/createEcdsaKeyTemplate hash-type curve encoding output-type))
 
 (defn createEciesAeadHkdfKeyTemplate
   [curve
