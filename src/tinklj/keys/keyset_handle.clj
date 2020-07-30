@@ -96,15 +96,6 @@
   [hash-type curve encoding ^OutputPrefixType output-type]
   (SignatureKeyTemplates/createEcdsaKeyTemplate hash-type curve encoding output-type))
 
-(defn createEciesAeadHkdfKeyTemplate
-  [curve
-   hash-type
-   ec-point-format
-   dem-key-template
-   salt]
-  (HybridKeyTemplates/createEciesAeadHkdfKeyTemplate
-   curve hash-type ec-point-format dem-key-template salt))
-
 (defn createEciesAeadHkdfParams
   [curve
    hash-type
