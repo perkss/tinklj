@@ -13,3 +13,5 @@ pom.xml.asc
 .DS_Store
 .idea/
 *iml
+.clj-kondo
+.lsp

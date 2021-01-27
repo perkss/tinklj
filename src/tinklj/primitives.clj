@@ -1,15 +1,15 @@
 (ns tinklj.primitives
-  (:import (com.google.crypto.tink.aead AeadFactory)
-           (com.google.crypto.tink.mac MacFactory)
+  (:import (com.google.crypto.tink.mac MacFactory)
            (com.google.crypto.tink.streamingaead StreamingAeadFactory)
            (com.google.crypto.tink.daead DeterministicAeadFactory)
            (com.google.crypto.tink.signature PublicKeySignFactory
                                              PublicKeyVerifyFactory)
            (com.google.crypto.tink.hybrid HybridDecryptFactory
-                                          HybridEncryptFactory)))
+                                          HybridEncryptFactory)
+           (com.google.crypto.tink KeysetHandle Aead)))
 
-(defn aead [handle]
-  (AeadFactory/getPrimitive handle))
+(defn aead [^KeysetHandle handle]
+  (.getPrimitive handle Aead))
 
 (defn mac [handle]
   (MacFactory/getPrimitive handle))
