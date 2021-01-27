@@ -1,8 +1,12 @@
 (ns tinklj.config-test
   (:require [clojure.test :refer [deftest testing is]]
-            [tinklj.config :as sut]))
+            [tinklj.config :as sut])
+  (:import (com.google.crypto.tink KeyManager)))
 
-(deftest register-test
+(defn key-manager [] (reify KeyManager
+                       (getKeyType [this] "")))
+
+(deftest init-test
   (doseq [thing [:aead :daead :mac :signature :streaming]]
     (testing (str "config with type " (name thing))
       (is (nil? (sut/register thing)))))
@@ -10,6 +14,6 @@
   (testing "Config without a type"
     (is (nil? (sut/register))))
 
-  (testing "Defaults to Standard config"
-    (is (nil? (sut/register :foobar)))))
+  (testing "Can be provided with a custom key manager"
+    (is (nil? (sut/register (key-manager))))))
 
