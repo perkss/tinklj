@@ -1,11 +1,11 @@
 (ns tinklj.acceptance.symmetric-key-encryption-test
   (:require [clojure.test :refer [deftest is testing]]
-            [tinklj.config :refer [register]]
+            [tinklj.core :refer [init!]]
             [tinklj.primitives :as primitives]
             [tinklj.keys.keyset-handle :as keyset-handles]
             [tinklj.encryption.aead :as sut]))
 
-(register :aead)
+(init! :aead)
 
 (deftest symmetric-key-encryption
   (testing "Symmetric key encryption"

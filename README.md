@@ -38,15 +38,15 @@ If you want to use all implementations of all primitives in tinklj then you
 call as follows:
 
 ```clojure
-(:require [tinklj.config :refer [register])
+(:require [tinklj.core :refer [init!])
 
-(register)
+(init!)
 ```
 
 If you wish to use a specific implementation such as AEAD you use:
 
 ```clojure
-(:require [tinklj.config :refer [register])
+(:require [tinklj.core :refer [init!])
 
 (register :aead)
 ```
@@ -60,7 +60,7 @@ Available options are:
 To do custom initialization then registration proceeds directly with a Registry class.
 
 ```clojure
-(:require [tinklj.config :refer [register-key-manager])
+(:require [tinklj.core :refer [register-key-manager])
 
 (register-key-manager (MyAeadKeyManager.)
 ```
@@ -276,12 +276,12 @@ Here is an example of how to sign or verify a digital signature:
 To encrypt or decrypt using a [combination of public key encryption and symmetric key encryption](https://github.com/google/tink/blob/master/docs/PRIMITIVES.md#hybrid-encryption) one can use the following:
 
 ```clojure
-(:require  [tinklj.config :refer [register]]
+(:require  [tinklj.core :refer [init!]]
            [tinklj.keys.keyset-handle :as keyset]
            [tinklj.primitives :as primitives]
            [tinklj.encryption.aead :refer [encrypt decrypt]])
 
-(register)
+(init!)
 
 ;; 1. Generate the private key material.
 (def private-keyset-handle (keyset/generate-new :ecies-p256-hkdf-hmac-sha256-aes128-gcm))

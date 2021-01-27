@@ -1,11 +1,11 @@
 (ns tinklj.acceptance.hybrid-encryption-test
   (:require [clojure.test :refer [deftest is testing]]
-            [tinklj.config :refer [register]]
+            [tinklj.core :refer [init!]]
             [tinklj.keys.keyset-handle :as keyset]
             [tinklj.primitives :as primitives]
             [tinklj.encryption.aead :refer [encrypt decrypt]]))
 
-(register)
+(init!)
 
 (deftest hybrid-encryption-test
 

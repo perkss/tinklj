@@ -1,6 +1,6 @@
 (ns tinklj.acceptance.symmetric-streaming-key-encryption
   (:require [clojure.test :refer [deftest is testing]]
-            [tinklj.config :refer [register]]
+            [tinklj.core :refer [init!]]
             [tinklj.primitives :as primitives]
             [tinklj.keys.keyset-handle :as keyset-handles]
             [clojure.java.io :refer [file output-stream input-stream]]
@@ -8,7 +8,7 @@
   (:import (java.io FileOutputStream FileInputStream ByteArrayInputStream File)
            (java.nio ByteBuffer)))
 
-(register :aes128-ctr-hmac-sha256-4kb)
+(init!)
 
 (deftest symmetric-streaming-key-encryption
   (testing "Symmetric streaming key encryption encrypt a stream of plain text
