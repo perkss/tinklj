@@ -1,11 +1,11 @@
 (ns tinklj.acceptance.symmetric-deterministic-key-encryption-test
   (:require [clojure.test :refer [deftest testing is]]
-            [tinklj.config :refer [register]]
+            [tinklj.core :refer [init!]]
             [tinklj.keys.keyset-handle :as keyset]
             [tinklj.primitives :refer [deterministic]]
             [tinklj.encryption.daead :as sut]))
 
-(register :daead)
+(init! :daead)
 
 (deftest symmetric-deterministic-key-encryption
 

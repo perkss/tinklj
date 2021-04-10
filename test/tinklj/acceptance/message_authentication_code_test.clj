@@ -1,12 +1,12 @@
 (ns tinklj.acceptance.message-authentication-code-test
   (:require [clojure.test :refer [deftest is testing]]
-            [tinklj.config :refer :all]
+            [tinklj.core :refer [init!]]
             [tinklj.primitives :as primitives]
             [tinklj.keys.keyset-handle :as keyset-handles]
             [tinklj.mac.message-authentication-code :as sut])
   (:import (java.security GeneralSecurityException)))
 
-(register :aead)
+(init! :aead)
 
 (deftest message-authentication-code
 

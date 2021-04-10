@@ -2,14 +2,14 @@
   (:require [clojure.test :refer [deftest is testing]]
             [tinklj.keys.keyset-handle :as keyset-handles]
             [tinklj.keysets.keyset-storage :as keyset-storage]
-            [tinklj.config :refer [register]]
+            [tinklj.core :refer [init!]]
             [clojure.java.io :as io])
   (:import (com.google.crypto.tink KeysetHandle)))
 
 (deftest write-clear-text-handle-test
   (testing "Testing that a file is written and then read and it is of the
   expected type"
-    (let [_ (register)
+    (let [_ (init!)
           keyset-handle (keyset-handles/generate-new :aes128-gcm)
           filename "my-test-keyset.json"
           _ (keyset-storage/write-clear-text-keyset-handle keyset-handle filename)
