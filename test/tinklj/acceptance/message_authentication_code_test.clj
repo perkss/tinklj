@@ -1,6 +1,6 @@
 (ns tinklj.acceptance.message-authentication-code-test
   (:require [clojure.test :refer [deftest is testing]]
-            [tinklj.config :refer :all]
+            [tinklj.config :refer [register]]
             [tinklj.primitives :as primitives]
             [tinklj.keys.keyset-handle :as keyset-handles]
             [tinklj.mac.message-authentication-code :as sut])

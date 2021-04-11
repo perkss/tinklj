@@ -1,8 +1,7 @@
 (ns tinklj.acceptance.digital-signature-test
   (:require [clojure.test :refer [deftest is testing]]
-            [tinklj.config :refer :all]
-            [tinklj.keys.keyset-handle :refer [get-public-keyset-handle]]
-            [tinklj.keys.keyset-handle :as keyset-handles]
+            [tinklj.config :refer [register]]
+            [tinklj.keys.keyset-handle :refer [get-public-keyset-handle] :as keyset-handles]
             [tinklj.signature.digital-signature :as sut])
   (:import (java.security GeneralSecurityException)))
 

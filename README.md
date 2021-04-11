@@ -276,10 +276,10 @@ Here is an example of how to sign or verify a digital signature:
 To encrypt or decrypt using a [combination of public key encryption and symmetric key encryption](https://github.com/google/tink/blob/master/docs/PRIMITIVES.md#hybrid-encryption) one can use the following:
 
 ```clojure
-(:require  [tinklj.config :refer [register]]
-           [tinklj.keys.keyset-handle :as keyset]
-           [tinklj.primitives :as primitives]
-           [tinklj.encryption.aead :refer [encrypt decrypt]])
+(:require [tinklj.config :refer [register]]
+  [tinklj.keys.keyset-handle :as keyset]
+  [tinklj.primitives :as primitives]
+  [tinklj.encryption.aead :refer [encrypt decrypt]])
 
 (register)
 
@@ -296,8 +296,8 @@ To encrypt or decrypt using a [combination of public key encryption and symmetri
 
 ;; 3. Use the primitive.
 (def encrypted-data (encrypt hybrid-encrypt
-                                 (.getBytes plain-text)
-                                 aad))
+                             (.getBytes plain-text)
+                             aad))
 ;; DECRYPTING
 
 ;;  2. Get the primitive.
@@ -305,8 +305,8 @@ To encrypt or decrypt using a [combination of public key encryption and symmetri
 
 ;; 3. Use the primitive.
 (def decrypted-data (decrypt hybrid-decrypt
-                                 encrypted-data
-                                 aad))
+                             encrypted-data
+                             aad))
 ```
 
 ## Envelope Encryption

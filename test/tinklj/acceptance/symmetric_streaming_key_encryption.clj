@@ -8,7 +8,7 @@
   (:import (java.io FileOutputStream FileInputStream ByteArrayInputStream File)
            (java.nio ByteBuffer)))
 
-(register :aes128-ctr-hmac-sha256-4kb)
+(register)
 
 (deftest symmetric-streaming-key-encryption
   (testing "Symmetric streaming key encryption encrypt a stream of plain text
