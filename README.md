@@ -6,6 +6,8 @@ Tinklj a Clojure api for [Google Tink](https://github.com/google/tink) cryptogra
 
 [![Clojars Project](https://img.shields.io/clojars/v/tinklj.svg)](https://clojars.org/tinklj)
 
+[![Clojure CI](https://github.com/perkss/tinklj/actions/workflows/clojure.yml/badge.svg)](https://github.com/perkss/tinklj/actions/workflows/clojure.yml)
+
 #### Leiningen/Boot
 ```
 [tinklj "0.1.3-SNAPSHOT"]
