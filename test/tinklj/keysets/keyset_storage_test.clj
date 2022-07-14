@@ -19,7 +19,8 @@
 
 (deftest rotate-should-add-new-key-and-set-primary-key-id
   (testing "Rotate key should add new and set a primary key id")
-  (let [keyset-handle (keyset-handles/generate-new :aes128-gcm)
+  (let [_ (register)
+        keyset-handle (keyset-handles/generate-new :aes128-gcm)
         keyset-template (:hmac-sha256-128bittag keyset-handles/key-templates)
         keyset-info (.getKeysetInfo (keyset-storage/rotate-keyset-handle keyset-handle keyset-template))]
     (is (= 2 (.getKeyInfoCount keyset-info)))))
