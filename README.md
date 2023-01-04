@@ -10,22 +10,22 @@ Tinklj a Clojure api for [Google Tink](https://github.com/google/tink) cryptogra
 
 #### Leiningen/Boot
 ```
-[tinklj "0.1.6-SNAPSHOT"]
+[tinklj "0.1.7-SNAPSHOT"]
 ```
 #### Clojure CLI/deps.edn
 ```
-tinklj {:mvn/version "0.1.6-SNAPSHOT"}
+tinklj {:mvn/version "0.1.7-SNAPSHOT"}
 ```
 #### Gradle
 ```
-compile 'tinklj:tinklj:0.1.6-SNAPSHOT'
+compile 'tinklj:tinklj:0.1.7-SNAPSHOT'
 ```
 #### Maven
 ``` xml
 <dependency>
   <groupId>tinklj</groupId>
   <artifactId>tinklj</artifactId>
-  <version>0.1.6-SNAPSHOT</version>
+  <version>0.1.7-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -209,16 +209,16 @@ We then get the primitive of the keyset-handle and can use this to encrypt and d
                                       streaming-primitive
                                       ciphertext-destination
                                       associated-data))
-                                      
+
 ;; 4. Write Encrypting Data
-(streaming/encrypting-channel-write encrypting-channel byte-buffer)   
+(streaming/encrypting-channel-write encrypting-channel byte-buffer)
 
 ;; 5. Get the Decrypting Channel
 (def decrypting-channel (streaming/decrypting-channel
                                            streaming-primitive
                                            (.getChannel file-input-stream)
                                            associated-data))
-                                           
+
 ;; 6. Read the Decrypted Data
 (streaming/decrypting-channel-read decrypting-channel buf)
 ```
@@ -322,7 +322,7 @@ To encrypt or decrypt using a [combination of public key encryption and symmetri
 ;; 1. Generate the key material.
     (def kmsKeyUri
         "gcp-kms://projects/tink-examples/locations/global/keyRings/foo/cryptoKeys/bar")
-    
+
     (def keysetHandle (keyset/generate-new
         (keyset/create-kms-envelope-aead-key-template kmsKeyUri :aes128-gcm)))
 
@@ -330,7 +330,7 @@ To encrypt or decrypt using a [combination of public key encryption and symmetri
     (def gcp-client (gcp-kms-client))
     (client/with-credentials gcp-client "credentials.json")
     (client/kms-client-add gcp-client)
-    
+
 ;; 3. Get the primitive.
     (def aead (primitives/aead keyset-handle))
 
