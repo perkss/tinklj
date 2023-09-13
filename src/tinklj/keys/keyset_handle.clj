@@ -15,8 +15,7 @@
                     :aes128-ctr-hmac-sha256 AeadKeyTemplates/AES128_CTR_HMAC_SHA256
                     :aes256-ctr-hmac-sha256 AeadKeyTemplates/AES256_CTR_HMAC_SHA256
                     :chacha20-poly1305 AeadKeyTemplates/CHACHA20_POLY1305
-                    ; This static property doesn't seem to exist on the class
-                    ; :xchacha20-poly1305 AeadKeyTemplates/XCHACHA20_POLY1305
+                    :xchacha20-poly1305 AeadKeyTemplates/XCHACHA20_POLY1305
                     :hmac-sha256-128bittag MacKeyTemplates/HMAC_SHA256_128BITTAG
                     :hmac-sha256-256bittag MacKeyTemplates/HMAC_SHA256_256BITTAG
                     :aes128-ctr-hmac-sha256-4kb StreamingAeadKeyTemplates/AES128_CTR_HMAC_SHA256_4KB
