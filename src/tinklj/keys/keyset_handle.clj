@@ -60,10 +60,6 @@
   (AeadKeyTemplates/createAesCtrHmacAeadKeyTemplate
    aes-key-size iv-size hmac-key-size tag-size hash-type))
 
-(defn create-kms-aead-key-template
-  [kms-key-uri]
-  (AeadKeyTemplates/createKmsAeadKeyTemplate kms-key-uri))
-
 (defn create-kms-envelope-aead-key-template
   [kms-key-uri key-template]
   (AeadKeyTemplates/createKmsEnvelopeAeadKeyTemplate kms-key-uri key-template))
