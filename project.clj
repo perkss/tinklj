@@ -1,7 +1,7 @@
 (defproject tinklj "0.1.15-SNAPSHOT"
   :description "A Clojure API for Google Tink Crypto Library. Offering a range of cryptographic techniques that are simple and easy to use."
-  :dependencies [[org.clojure/clojure "1.10.1"]
-                 [com.google.crypto.tink/tink "1.15.0"]
+  :dependencies [[org.clojure/clojure "1.11.1"]
+                 [com.google.crypto.tink/tink "1.20.0"]
                  ;; https://mvnrepository.com/artifact/com.google.crypto.tink/tink-awskms
                  [com.google.crypto.tink/tink-awskms "1.10.1"]
                  ;; https://mvnrepository.com/artifact/com.google.crypto.tink/tink-gcpkms

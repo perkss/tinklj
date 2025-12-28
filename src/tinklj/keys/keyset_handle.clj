@@ -1,12 +1,12 @@
-(ns tinklj.keys.keyset-handle
-  (:import (com.google.crypto.tink KeysetHandle)
-           (com.google.crypto.tink.aead AeadKeyTemplates)
-           (com.google.crypto.tink.streamingaead StreamingAeadKeyTemplates)
-           (com.google.crypto.tink.daead DeterministicAeadKeyTemplates)
-           (com.google.crypto.tink.mac MacKeyTemplates)
-           (com.google.crypto.tink.signature SignatureKeyTemplates)
-           (com.google.crypto.tink.hybrid HybridKeyTemplates)
-           (com.google.crypto.tink.proto OutputPrefixType)))
+ (ns tinklj.keys.keyset-handle
+   (:import (com.google.crypto.tink KeysetHandle KeyTemplate)
+            (com.google.crypto.tink.aead AeadKeyTemplates)
+            (com.google.crypto.tink.streamingaead StreamingAeadKeyTemplates)
+            (com.google.crypto.tink.daead DeterministicAeadKeyTemplates)
+            (com.google.crypto.tink.mac MacKeyTemplates)
+            (com.google.crypto.tink.signature SignatureKeyTemplates)
+            (com.google.crypto.tink.hybrid HybridKeyTemplates)
+            (com.google.crypto.tink.proto OutputPrefixType)))
 
 (def key-templates {:aes128-gcm AeadKeyTemplates/AES128_GCM
                     :aes256-gcm AeadKeyTemplates/AES256_GCM
@@ -99,3 +99,51 @@
    salt]
   (HybridKeyTemplates/createEciesAeadHkdfParams
    curve hash-type ec-point-format dem-key-template salt))
+
+(defn generate-entry-from-parameters-name
+  "Create a `KeysetHandle.Builder.Entry` from a registered parameters name string.
+  Example: (generate-entry-from-parameters-name 'AES128_GCM')"
+  [^String parameters-name]
+  (KeysetHandle/generateEntryFromParametersName parameters-name))
+
+(defn generate-new-from-parameters-name
+  "Generate a new `KeysetHandle` that contains a single key created from the
+  registered parameters name. This mirrors `KeysetHandle.generateNew(Parameters)`
+  but takes the named parameters (string). Returns a `KeysetHandle`."
+  [^String parameters-name]
+    (let [entry (generate-entry-from-parameters-name parameters-name)
+      entry' (-> entry (.withRandomId) (.makePrimary))
+      builder (KeysetHandle/newBuilder)]
+    (-> builder
+      (.addEntry entry')
+      (.build))))
+
+(defn generate-entry-from-parameters
+  "Create a `KeysetHandle.Builder.Entry` from a `Parameters` instance." 
+  [^Object parameters]
+  (KeysetHandle/generateEntryFromParameters parameters))
+
+(defn generate-new-from-parameters
+  "Generate a new `KeysetHandle` that contains a single key created from a
+  `Parameters` instance. Returns a `KeysetHandle`."
+  [^Object parameters]
+  (KeysetHandle/generateNew parameters))
+
+(defn keytemplate-create-from-parameters
+  "Create a `KeyTemplate` from a `Parameters` instance." 
+  [^Object parameters]
+  (KeyTemplate/createFrom parameters))
+
+(defn keytemplate-to-parameters
+  "Return a `Parameters` instance from a `KeyTemplate` that supports `toParameters()`.
+  Throws if the KeyTemplate does not support conversion."
+  [kt]
+  (try
+    (.toParameters kt)
+    (catch Throwable t
+      (throw (IllegalArgumentException. (str "KeyTemplate does not support toParameters: " t))))))
+
+(defn generate-new-from-keytemplate
+  "Generate a new `KeysetHandle` from a `KeyTemplate` instance. Returns a `KeysetHandle`."
+  [kt]
+  (KeysetHandle/generateNew kt))
